@@ -1,0 +1,24 @@
+{
+  "name": "docque",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yakiyo/docque.git"
+  },
+  "keywords": [
+    "doctor",
+    "queue",
+    "service"
+  ],
+  "author": "Yakiyo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Yakiyo/docque/issues"
+  },
+  "homepage": "https://github.com/Yakiyo/docque#readme"
+}
