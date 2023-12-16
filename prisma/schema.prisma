@@ -18,6 +18,7 @@ model Doctor {
 
 model Appointment {
   id       Int      @id @default(autoincrement())
+  patient  String
   start    DateTime
   end      DateTime
   doctor   Doctor?  @relation(fields: [doctorId], references: [id])
