@@ -12,7 +12,7 @@ datasource db {
 
 model Doctor {
   id           Int           @id @default(autoincrement())
-  name         String
+  name         String        @unique
   appointments Appointment[]
 }
 
