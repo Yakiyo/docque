@@ -1,14 +1,13 @@
-import { fastify } from "fastify";
+import express from 'express';
 
-const app = fastify({
-  logger: true,
-  clientErrorHandler: (error) => console.error(error),
+const app = express();
+const port = Number(process.env.PORT ?? '3000');
+
+app.get('/', (_req, res) => {
+	if (process.env.NODE_ENV !== 'production') {
+		return console.log('Hello World');
+	}
+	res.redirect('https://github.com/Yakiyo/docque');
 });
 
-app.listen({ port: Number(process.env.PORT ?? 3000) }, (err, port) => {
-  if (err) {
-    console.error("Unexpected error when starting server", err);
-    process.exit(1);
-  }
-  console.info(`Listening to ${port}`);
-});
+app.listen(port, () => console.info(`Listening to port ${port}`));

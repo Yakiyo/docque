@@ -1,19 +1,23 @@
 {
-  "root": true,
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier"
-  ],
-  "rules": {
-    "no-empty-function": "error",
-    "no-var": "error",
-    "prefer-const": "error",
-    "no-unreachable": "error",
-    "no-unused-vars": "error",
-    "no-empty": "error",
-    "yoda": "error"
-  }
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["@typescript-eslint"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"prettier"
+	],
+	"ignorePatterns": ["dist/**/*.js"],
+	"rules": {
+		"no-empty-function": "error",
+		"no-var": "error",
+		"prefer-const": "error",
+		"no-unreachable": "error",
+		"no-unused-vars": "error",
+		"no-empty": "error",
+		"yoda": "error"
+	},
+	"env": {
+		"node": true
+	}
 }
