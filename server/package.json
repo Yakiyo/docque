@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "eslint . && prettier -w ."
+    "format": "eslint . && prettier -w .",
+    "build": "tsc",
+    "prs:gen": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.7.0",

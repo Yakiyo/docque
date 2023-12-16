@@ -2,10 +2,11 @@
   "name": "docque",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "pnpm --filter=\"server\""
+    "server": "pnpm --filter=\"server\"",
+    "format": "pnpm -r format",
+    "build": "pnpm -r build",
+    "postinstall": "pnpm build"
   },
   "repository": {
     "type": "git",
