@@ -15,5 +15,9 @@
     "outDir": "./dist/",
     "importHelpers": true
   },
-  "include": ["src/"]
+  "include": ["src/"],
+  "env": {
+    "node": true,
+    "es6": true
+  }
 }
