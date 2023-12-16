@@ -1,4 +1,4 @@
-import { prisma } from '$lib';
+import { addDuration, prisma } from '$lib';
 import { json } from '@sveltejs/kit';
 
 /**
@@ -19,12 +19,7 @@ export async function GET() {
 				}
 			}
 		})
-		.then((a) =>
-			a.map((a) => ({
-				duration: Math.abs(a.end.getTime() - a.start.getTime()),
-				...a
-			}))
-		)
+		.then((a) => a.map(addDuration))
 		.catch((e) => `${e}`);
 
 	if (typeof data === 'string') {
