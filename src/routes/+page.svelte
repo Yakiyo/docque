@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	export let data;
+    // sort appointments based on doctor
+	const appointments = data.appointments.sort((x, y) =>
+		x.doctor.name! > y.doctor.name! ? 1 : x.doctor.name! < y.doctor.name! ? -1 : 0
+	);
+    
+</script>
+
+<svelte:head>
+	<title>Docque - Doctor's Appointment Queue</title>
+</svelte:head>
