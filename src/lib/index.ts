@@ -7,7 +7,7 @@ export function addDuration<T extends Pick<Appointment, 'start' | 'end'>>(
 	a: T
 ): T & { duration: number } {
 	return {
-		duration: Math.abs(a.end.getTime() - a.start.getTime()),
+		duration: Math.abs((a.end.getTime() - a.start.getTime()) / 60000),
 		...a
 	};
 }
