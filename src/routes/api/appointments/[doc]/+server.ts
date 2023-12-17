@@ -47,7 +47,7 @@ export async function POST({ params: { doc }, request }) {
 			name: doc
 		},
 		select: {
-			id: true,
+			id: true
 		}
 	});
 	if (!doctor) {
@@ -57,18 +57,22 @@ export async function POST({ params: { doc }, request }) {
 			error: `Invalid doctor name. No entry found for ${doc}`
 		});
 	}
-	const err = await prisma.appointment.create({
-		data: {
-			start: new Date(start),
-			end: new Date(new Date(start).getTime() + (Number(duration) * 60000)),
-			patient,
-			doctorId: doctor.id,
-		}
-	}).then(() => null).catch(e => `${e}`);
-	
+	// TODO: make sure theres no existing in the same time and duration
+	const err = await prisma.appointment
+		.create({
+			data: {
+				start: new Date(start),
+				end: new Date(new Date(start).getTime() + Number(duration) * 60000),
+				patient,
+				doctorId: doctor.id
+			}
+		})
+		.then(() => null)
+		.catch((e) => `${e}`);
+
 	return json({
 		ok: !err ? true : false,
 		data: null,
-		error: err,
-	})
+		error: err
+	});
 }
