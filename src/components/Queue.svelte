@@ -2,9 +2,8 @@
 	import type { AppointmentResponse } from '$lib';
 	export let doctor: string;
 	export let appointments: AppointmentResponse[];
-	// console.log(appointments.find(a => !a.start), doctor)
 
-	// appointments.sort((a, b) => a.start.getTime() - b.start.getTime());
+	appointments.sort((a, b) => new Date(a.start).getDate() - new Date(b.start).getDate());
 </script>
 
 <table border="25" class="table-auto border-spacing-5">
