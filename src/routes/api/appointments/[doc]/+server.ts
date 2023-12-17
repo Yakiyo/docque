@@ -76,3 +76,31 @@ export async function POST({ params: { doc }, request }) {
 		error: err
 	});
 }
+
+/**
+ * Remove an appointment of a doctor
+ */
+export async function DELETE({ params: { doc }, request }) {
+	const { id } = (await request.json()) as Record<string, string>;
+	if (!id) {
+		return json({
+			ok: false,
+			data: null,
+			error: 'Missing required value id in request body. Provide id of appointment to remove.'
+		});
+	}
+	const error = await prisma.appointment.delete({
+		where: {
+			id: Number(id),
+			doctor: {
+				name: doc,
+			}
+		}
+	}).then(() => null).catch(e => `${e}`);
+
+	return json({
+		ok: !error ? true : false,
+		data: null,
+		error,
+	})
+}
