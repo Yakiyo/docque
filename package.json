@@ -11,7 +11,8 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"gen": "prisma generate",
-		"seed": "prisma db push && prisma db seed"
+		"seed": "prisma db push && prisma db seed",
+		"sync": "svelte-kit sync"
 	},
 	"prisma": {
 		"seed": "node prisma/seed.js"
