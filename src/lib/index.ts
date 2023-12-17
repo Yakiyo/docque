@@ -12,4 +12,14 @@ export function addDuration<T extends Pick<Appointment, 'start' | 'end'>>(
 	};
 }
 
+export type AppointmentResponse = Appointment & {
+	duration: number
+}
+
+export type ApiResponse<T> = {
+	ok: boolean,
+	error: string | null,
+	data: T,
+}
+
 export * from './db';
