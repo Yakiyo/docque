@@ -1,4 +1,4 @@
-import type { Appointment } from '@prisma/client';
+import type { Appointment, Doctor } from '@prisma/client';
 
 /**
  * Calculates and adds duration of the appointment and returns it
@@ -13,6 +13,7 @@ export function addDuration<T extends Pick<Appointment, 'start' | 'end'>>(
 }
 
 export type AppointmentResponse = Appointment & {
+	doctor: Doctor,
 	duration: number
 }
 
