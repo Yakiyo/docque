@@ -7,11 +7,8 @@ import { json } from '@sveltejs/kit';
 export async function GET() {
 	const data = await prisma.appointment
 		.findMany({
-			select: {
-				id: true,
-				start: true,
-				end: true,
-				doctor: true
+			include: {
+				doctor: true,
 			},
 			orderBy: {
 				doctor: {

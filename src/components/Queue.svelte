@@ -2,11 +2,13 @@
 	import type { AppointmentResponse } from '$lib';
 	export let doctor: string;
 	export let appointments: AppointmentResponse[];
-	appointments.sort((a, b) => a.start.getTime() - b.start.getTime());
+	// console.log(appointments.find(a => !a.start), doctor)
+
+	// appointments.sort((a, b) => a.start.getTime() - b.start.getTime());
 </script>
 
-<table border="5">
-	<caption>Appointments for Dr. {doctor}</caption>
+<table border="25" class="table-auto border-spacing-5">
+	<caption class="text-lg font-bold"><a href={`/${doctor}`}>Appointments for Dr. {doctor}</a></caption>
 	<tr>
 		<th>Serial</th>
 		<th>Patient</th>
@@ -27,3 +29,15 @@
 		</tr>
 	{/each}
 </table>
+
+<style>
+	td {
+		text-align: center;
+		padding: 15px;
+	}
+	table,
+	th,
+	td {
+		border: 1px solid;
+	}
+</style>
