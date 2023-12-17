@@ -15,7 +15,7 @@ async function generateDoctor() {
 	const n = faker.number.int({ min: 5, max: 20 });
 	console.info(`Generating ${n} appointments for Dr. ${doctor.name}`);
 	for (let i = 1; i <= n; i++) {
-		await generateAppointment(doctor)
+		await generateAppointment(doctor);
 	}
 }
 

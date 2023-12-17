@@ -13,14 +13,14 @@ export function addDuration<T extends Pick<Appointment, 'start' | 'end'>>(
 }
 
 export type AppointmentResponse = Appointment & {
-	doctor: Doctor,
-	duration: number
-}
+	doctor: Doctor;
+	duration: number;
+};
 
 export type ApiResponse<T> = {
-	ok: boolean,
-	error: string | null,
-	data: T,
-}
+	ok: boolean;
+	error: string | null;
+	data: T;
+};
 
 export * from './db';

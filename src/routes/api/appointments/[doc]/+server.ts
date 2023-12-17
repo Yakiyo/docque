@@ -89,18 +89,21 @@ export async function DELETE({ params: { doc }, request }) {
 			error: 'Missing required value id in request body. Provide id of appointment to remove.'
 		});
 	}
-	const error = await prisma.appointment.delete({
-		where: {
-			id: Number(id),
-			doctor: {
-				name: doc,
+	const error = await prisma.appointment
+		.delete({
+			where: {
+				id: Number(id),
+				doctor: {
+					name: doc
+				}
 			}
-		}
-	}).then(() => null).catch(e => `${e}`);
+		})
+		.then(() => null)
+		.catch((e) => `${e}`);
 
 	return json({
 		ok: !error ? true : false,
 		data: null,
-		error,
-	})
+		error
+	});
 }

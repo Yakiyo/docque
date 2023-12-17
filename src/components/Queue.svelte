@@ -5,7 +5,7 @@
 	appointments.sort((a, b) => a.start.getTime() - b.start.getTime());
 </script>
 
-<table border=5>
+<table border="5">
 	<caption>Appointments for Dr. {doctor}</caption>
 	<tr>
 		<th>Serial</th>
