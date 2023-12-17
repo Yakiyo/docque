@@ -10,7 +10,11 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"gen": "prisma generate"
+		"gen": "prisma generate",
+		"seed": "prisma db push && prisma db seed"
+	},
+	"prisma": {
+		"seed": "node prisma/seed.js"
 	},
 	"devDependencies": {
 		"@faker-js/faker": "^8.3.1",
