@@ -9,13 +9,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func main() {
+func run() error {
 	port := "8080"
 	if val := os.Getenv("PORT"); val != "" {
 		port = val
 	}
 
-	db.Init()
+	if err := db.Init(); err != nil {
+		return err
+	}
+
 	defer db.Close()
 
 	// log stuff to stderr, not stdout
@@ -31,8 +34,12 @@ func main() {
 	api.Register(router)
 
 	log.Info("Starting server", "port", port)
-	err := app.Run(":" + port)
-	if err != nil {
-		log.Fatal("Error when starting server", "err", err)
+	return app.Run(":" + port)
+}
+
+func main() {
+	if err := run(); err != nil {
+		log.Error(err)
+		os.Exit(1)
 	}
 }
