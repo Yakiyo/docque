@@ -22,3 +22,13 @@ fmt:
 update:
 	go get
 	go mod tidy
+
+@prisma *arg:
+    go run github.com/steebchen/prisma-client-go $@
+
+gen:
+	@just prisma generate
+
+push:
+	@just prisma db push
+
