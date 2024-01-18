@@ -3,7 +3,7 @@ tasks:
   - name: Script Task
     before: brew install just
     init: go get
-    command: just build
+    command: just gen && just push && just build
 
 
 vscode:
