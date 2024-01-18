@@ -1,8 +1,13 @@
 package api
 
 import (
+	"bytes"
+	"context"
+	"fmt"
 	"net/http"
+	"strings"
 
+	"github.com/Yakiyo/docque/db"
 	"github.com/charmbracelet/log"
 	"github.com/gin-gonic/gin"
 )
@@ -16,4 +21,28 @@ func Register(router *gin.RouterGroup) {
 	router.GET("/all", allDocs)
 }
 
-func allDocs(ctx *gin.Context) {}
+func allDocs(ctx *gin.Context) {
+	docs, err := db.Client.Doctor.FindMany().With(db.Doctor.Appointments.Fetch()).Exec(context.Background())
+	if err != nil {
+		errResponse(ctx, err)
+		return
+	}
+	output := []string{}
+	for _, doc := range docs {
+		as := iter_map(doc.Appointments(), atoqa)
+		d := QueueDoc{
+			Id:           doc.ID,
+			Name:         doc.Name,
+			Appointments: as,
+		}
+		buff := &bytes.Buffer{}
+		queueTmpl.Execute(buff, d)
+		output = append(output, buff.String())
+	}
+	ctx.String(http.StatusOK, strings.Join(output, "\n\n"))
+}
+
+func errResponse(ctx *gin.Context, err error) {
+	log.Error("Unexpected error", "err", err)
+	ctx.String(http.StatusInternalServerError, fmt.Sprintf(`<p>ERROR: %s</p>`, err))
+}

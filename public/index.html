@@ -3,10 +3,8 @@
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>
 
-<div>
-    <p>Some stuff to go here</p>
-    
-    <button hx-get="/api/hello" hx-swap="outerHTML">
-        Click Me
-    </button>
+<div>    
+    <div hx-get="/api/all" hx-trigger="load" hx-swap="innerHTML">
+        Loading...
+    </div>
 </div>
