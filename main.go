@@ -27,7 +27,11 @@ func run() error {
 	app := gin.Default()
 
 	// serve all files in /public
-	app.Static("/", "./public")
+	app.StaticFile("/", "./public/index.html")
+
+	app.GET("/doc/:id", func(c *gin.Context) {
+		c.File("./public/doc.html")
+	})
 
 	router := app.Group("/api")
 

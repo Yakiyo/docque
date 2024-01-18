@@ -1,5 +1,15 @@
 package api
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
 
-func Register(router *gin.RouterGroup) {}
+	"github.com/charmbracelet/log"
+	"github.com/gin-gonic/gin"
+)
+
+func Register(router *gin.RouterGroup) {
+	router.GET("/hello", func(ctx *gin.Context) {
+		log.Info("in hello", "headers", ctx.Request.Header)
+		ctx.String(http.StatusOK, `<p>Hello World</p>`)
+	})
+}
