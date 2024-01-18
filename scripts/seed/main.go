@@ -13,16 +13,17 @@ import (
 func main() {
 	db.Init()
 	defer db.Close()
+	log.SetReportTimestamp(false)
 	// random int between 4 and 9
 	n := rand.Intn(5) + 4
-	log.Info("Generating doctors", "n", n)
+	log.Info("generating doctors", "n", n)
 	for i := 1; i <= n; i++ {
 		genDoc()
 	}
 }
 
 // generate a random doctor instance
-func genDoc() error {
+func genDoc() {
 	ctx := context.Background()
 	docName := faker.Name()
 
@@ -31,28 +32,34 @@ func genDoc() error {
 	).Exec(ctx)
 
 	if err != nil {
-		return err
+		panic(err)
 	}
+	log.Info("created doctor instance", "val", doc)
 	// random int between 5 to 20
 	n := rand.Intn(15) + 5
+	log.Info("generating appointments", "n", n)
 	for i := 1; i <= n; i++ {
 		genAppointment(doc)
 	}
-	return nil
 }
 
 // generate a random appointment instance for a doctor
 func genAppointment(doc *db.DoctorModel) {
+	ctx := context.Background()
 	t1, err := time.Parse(faker.TimeFormat, faker.TimeString())
 	if err != nil {
 		panic(err)
 	}
 	d, _ := time.ParseDuration("30m")
 	t2 := t1.Add(d)
-	db.Client.Appointment.CreateOne(
+	a, err := db.Client.Appointment.CreateOne(
 		db.Appointment.Patient.Set(faker.Name()),
 		db.Appointment.Start.Set(t1),
 		db.Appointment.End.Set(t2),
 		db.Appointment.DoctorID.Set(doc.ID),
-	)
+	).Exec(ctx)
+	if err != nil {
+		panic(err)
+	}
+	log.Info("created appointment instance", "val", a)
 }
