@@ -20,6 +20,11 @@ func main() {
 	for i := 1; i <= n; i++ {
 		genDoc()
 	}
+	ctx := context.Background()
+	docs, _ := db.Client.Doctor.FindMany().Exec(ctx)
+	aps, _ := db.Client.Appointment.FindMany().Exec(ctx)
+	log.Info("generated doctors", "count", len(docs))
+	log.Info("generated appointments", "count", len(aps))
 }
 
 // generate a random doctor instance
