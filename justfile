@@ -32,3 +32,6 @@ gen:
 push:
 	@just prisma db push
 
+seed:
+	go run ./scripts/seed
+
