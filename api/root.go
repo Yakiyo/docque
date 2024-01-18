@@ -12,4 +12,8 @@ func Register(router *gin.RouterGroup) {
 		log.Info("in hello", "headers", ctx.Request.Header)
 		ctx.String(http.StatusOK, `<p>Hello World</p>`)
 	})
+
+	router.GET("/all", allDocs)
 }
+
+func allDocs(ctx *gin.Context) {}
