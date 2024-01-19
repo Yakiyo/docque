@@ -35,3 +35,5 @@ push:
 seed:
 	go run ./scripts/seed
 
+css:
+	npx --yes tailwindcss -i public/_base.css -o public/styles.css
