@@ -28,4 +28,4 @@ go.work
 dist/
 
 # tailwind's generated file
-public/styles.css
+static/styles.css
