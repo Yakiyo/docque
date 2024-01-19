@@ -24,4 +24,8 @@ app
 # Go workspace file
 go.work
 
+# build files
 dist/
+
+# tailwind's generated file
+public/styles.css
