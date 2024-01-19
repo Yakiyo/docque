@@ -34,7 +34,7 @@ func run() error {
 
 	// serve all files in /static
 	app.StaticFile("/", "./static")
-	app.StaticFile("/loading.svg", "./static/loading.svg")
+	app.StaticFile("/loading.gif", "./static/loading.gif")
 	app.StaticFile("/styles.css", "./static/styles.css")
 
 	router := app.Group("/api")

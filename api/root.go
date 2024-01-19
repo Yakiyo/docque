@@ -39,7 +39,11 @@ func allDocs(ctx *gin.Context) {
 		queueTmpl.Execute(buff, d)
 		output = append(output, buff.String())
 	}
-	ctx.String(http.StatusOK, strings.Join(output, "\n\n"))
+	wrap := fmt.Sprintf(
+		`<div class="flex w-full flex-col items-center justify-between">%s</div>`,
+		strings.Join(output, "\n\n"),
+	)
+	ctx.String(http.StatusOK, wrap)
 }
 
 func errResponse(ctx *gin.Context, err error) {

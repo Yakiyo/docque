@@ -30,7 +30,7 @@ func atoqa(a db.AppointmentModel) QueueAppointment {
 	return QueueAppointment{
 		Patient:  a.Patient,
 		Start:    a.Start.UTC(),
-		Duration: int(a.End.UTC().Sub(a.Start.UTC())),
+		Duration: int(a.End.UTC().Sub(a.Start.UTC()).Minutes()),
 	}
 }
 
