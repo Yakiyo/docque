@@ -28,6 +28,7 @@ func run() error {
 
 	// serve all files in /public
 	app.StaticFile("/", "./public/index.html")
+	app.StaticFile("/styles.css", "./public/styles.css")
 
 	app.GET("/doc/:id", func(c *gin.Context) {
 		c.File("./public/doc.html")
