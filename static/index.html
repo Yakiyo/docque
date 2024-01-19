@@ -1,0 +1,16 @@
+<head>
+  <title>Docque - Doctor's Appointment Queue</title>
+  <link href="./styles.css" rel="stylesheet" />
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+
+<div>
+  <div
+    hx-get="/api/all"
+    hx-trigger="load"
+    hx-swap="innerHTML"
+    class="flex w-full flex-col items-center justify-between"
+  >
+  <img class="htmx-indicator" src="./loading.svg">
+  </div>
+</div>

@@ -2,6 +2,8 @@ package main
 
 import (
 	"os"
+	_ "path/filepath"
+	_ "strings"
 
 	"github.com/Yakiyo/docque/api"
 	"github.com/Yakiyo/docque/db"
@@ -26,16 +28,16 @@ func run() error {
 
 	app := gin.Default()
 
-	// serve all files in /public
-	app.StaticFile("/", "./public/index.html")
-	app.StaticFile("/styles.css", "./public/styles.css")
-
 	app.GET("/doc/:id", func(c *gin.Context) {
-		c.File("./public/doc.html")
+		c.File("./assets/doc.html")
 	})
 
-	router := app.Group("/api")
+	// serve all files in /static
+	app.StaticFile("/", "./static")
+	app.StaticFile("/loading.svg", "./static/loading.svg")
+	app.StaticFile("/styles.css", "./static/styles.css")
 
+	router := app.Group("/api")
 	api.Register(router)
 
 	log.Info("Starting server", "port", port)
